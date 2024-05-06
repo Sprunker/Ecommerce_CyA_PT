@@ -1,0 +1,11 @@
+.img-banner {
+  width: 100%;
+  margin-bottom: 16px;
+  margin-top: 4rem;
+}
+
+@media (max-width: 992px) {
+  .img-banner {
+    display: none;
+  }
+}

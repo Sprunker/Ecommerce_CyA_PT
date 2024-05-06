@@ -1,0 +1,95 @@
+.number-products {
+  margin-left: 16px;
+  font-weight: 300 !important;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.grid {
+  width: 100%;
+  max-width: 1440px;
+}
+
+.card {
+  border: none;
+  border-radius: 0;
+  animation: fade-in 1s;
+  position: relative;
+}
+
+.icon-hearth {
+  width: 36px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  cursor: pointer;
+
+  &:hover :is(path) {
+    fill: red;
+  }
+}
+
+.card-img-top {
+  cursor: pointer;
+  aspect-ratio: 0.6;
+}
+
+.card-title {
+  margin: 0 !important;
+  font-weight: 300 !important;
+}
+
+.dp-none {
+  display: none;
+}
+
+.swatches {
+  margin-left: -.5rem;
+}
+
+.swatch {
+  width: 20px;
+  height: 20px;
+  margin: .5rem;
+  cursor: pointer;
+  border: 1px solid gray;
+  border-radius: 50%;
+
+  &:hover {
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@media (max-width: 360px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 390px) {
+  .number-products {
+    margin-top: 6.5rem;
+  }
+}
+
+@media (391px <= width <= 992px) {
+  .number-products {
+    margin-top: 4rem;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
