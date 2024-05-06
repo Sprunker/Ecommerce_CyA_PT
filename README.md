@@ -13,9 +13,7 @@ Prueba técnica para C&A
 - Npm v.10.5.0
 
 ## Stack Frontend
-- Angular v.16.2.12
-- Angular CLI v.16.2.14
-- Angular Router v.16.2.12
+- Angular / CLI / Router v.16.2.12
 - Bootstrap v.5.3.3
 - TypeScript v.5.1.6
 - RxJs v.7.8.1
