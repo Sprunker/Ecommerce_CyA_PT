@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Docs } from 'src/app/models/docs.model';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product-service/product.service';
 
@@ -8,27 +9,57 @@ import { ProductService } from 'src/app/services/product-service/product.service
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent {
-  constructor(
-    private _productService: ProductService
-  ) {}
+
+  readonly QUERY_LIMIT = 20;
 
   products: Product[] = [];
+  productsLength: number = 0;
   elements: any;
+  page: number = 1;
 
-  ngOnInit(): void {
-    this._productService.getAllProducts().subscribe((res) => {
-      this.products = res;
-    },
-    (error) => {
-      console.error(error);
-    });
+  constructor(
+    private _productService: ProductService
+  ) {
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
+    this.loadData();
+  }
+
+  onScroll(): void {
+    this.appendData();
+  }
+
+  loadData(): void {
+    this._productService.getAllProducts(this.page, this.QUERY_LIMIT).subscribe({
+      next: response => {
+        this.products = response.docs;
+        this.productsLength = response.totalDocs;
+      },
+      error: err => console.log(err),
+      complete: () => this.addEventsListeners()
+    })
+  }
+
+  appendData(): void {
+    this.page++;
+
+    this._productService.getAllProducts(this.page, this.QUERY_LIMIT).subscribe({
+      next: response => {
+        this.products = [...this.products, ...response.docs];
+      },
+      error: err => console.log(err),
+      complete: () => this.addEventsListeners()
+    })
+  }
+
+  addEventsListeners(): void {
     setTimeout(() => {
       this.elements = document.getElementsByClassName('card');
+      const initialValue = (this.page - 1) * this.QUERY_LIMIT;
 
-      for (var i = 0; i < this.elements.length; i++) {
+      for (var i = initialValue; i < this.elements.length; i++) {
+
         const el = this.elements[i];
 
         if(el == null)
@@ -54,10 +85,9 @@ export class ProductsComponent {
           img2?.classList.toggle('dp-none');
         });
       }
+
+      console.log('a-'+this.page);
     }, 1000);
   }
 }
-  // ngAfterViewInit(): void {
-
-  //   }
 

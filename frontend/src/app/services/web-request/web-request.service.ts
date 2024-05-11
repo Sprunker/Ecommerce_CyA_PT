@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Product } from 'src/app/models/product.model';
+import { Docs } from 'src/app/models/docs.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class WebRequestService {
     this.ROOT_URL = "http://localhost:3000/api";
   }
 
-  get(uri: string) {
-    return this._http.get<Product[]>(`${this.ROOT_URL}/${uri}`);
+  get(uri: string, page: number, limit: number) {
+    return this._http.get<Docs>(`${this.ROOT_URL}/${uri}?page=${page}&limit=${limit}`);
   }
 
   // post(uri: string, payload: Object) {

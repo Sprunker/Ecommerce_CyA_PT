@@ -1,6 +1,9 @@
-<h3 class="number-products"><strong>Productos</strong> ({{products.length}})</h3>
+<h3 class="number-products"><strong>Productos</strong> ({{productsLength}})</h3>
 
-<div class="cards-container">
+<div class="cards-container" infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()" >
   <div class="card-group grid justify-content-md-center">
     <div class="card g-col-xl-3 g-col-lg-3 g-col-md-4 g-col-sm-6 g-col-6" *ngFor="let product of products; let i = index">
       <svg class="icon-hearth" width="36px" height="36px" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
